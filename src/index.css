@@ -1,3 +1,4 @@
+@import "tailwindcss";
 /* Layout */
 .app {
   padding: 24px;
@@ -114,9 +115,10 @@
 /* Add card form */
 .add-card-btn {
   width: 100%;
-  text-align: left;
+  text-align: center;
   background: none;
-  border: none;
+  border: 1px solid;
+  border-style: dashed;
   padding: 8px 4px;
   color: #5e6c84;
   cursor: pointer;
@@ -137,7 +139,7 @@
 }
 .add-card-actions {
   display: flex;
-  gap: 8px;
+  gap: 1.5em;
   margin-top: 8px;
 }
 .add-card-actions button:first-child {
@@ -148,4 +150,20 @@
   padding: 6px 14px;
   cursor: pointer;
   font-size: 13px;
+}
+
+.input-area {
+  background-color: rgba(255, 255, 255, 0.603);
+}
+
+.card-todo {
+  border-top: 4px solid #3b82f6;
+}
+
+.card-in-progress {
+  border-top: 4px solid #f59e0b;
+}
+
+.card-completed {
+  border-top: 4px solid #22c55e;
 }

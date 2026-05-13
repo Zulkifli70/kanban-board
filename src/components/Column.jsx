@@ -40,6 +40,7 @@ export default function Column({
                 columnId={column.id}
                 onDelete={onDeleteCard}
                 onEdit={onEditCard}
+                className={`card-${columnVariant}`}
               />
             ))}
             {provided.placeholder}

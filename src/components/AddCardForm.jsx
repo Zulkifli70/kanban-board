@@ -14,7 +14,7 @@ export default function AddCardForm({ columnId, onAdd }) {
   if (!open)
     return (
       <button className="add-card-btn" onClick={() => setOpen(true)}>
-        + Add a card
+        + Add Task
       </button>
     );
 
@@ -26,6 +26,7 @@ export default function AddCardForm({ columnId, onAdd }) {
         onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSubmit()}
         placeholder="Judul card..."
         autoFocus
+        className="input-area"
       />
       <div className="add-card-actions">
         <button onClick={handleSubmit}>Add Card</button>
@@ -35,7 +36,7 @@ export default function AddCardForm({ columnId, onAdd }) {
             setText("");
           }}
         >
-          ✕
+          Cancel
         </button>
       </div>
     </div>
