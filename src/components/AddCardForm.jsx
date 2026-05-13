@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function AddCardForm({ columnId, onAdd }) {
+export default function AddCardForm({ columnId, onAdd, className = "" }) {
   const [text, setText] = useState("");
   const [open, setOpen] = useState(false);
 
@@ -13,7 +13,10 @@ export default function AddCardForm({ columnId, onAdd }) {
 
   if (!open)
     return (
-      <button className="add-card-btn" onClick={() => setOpen(true)}>
+      <button
+        className={`add-card-btn ${className}`}
+        onClick={() => setOpen(true)}
+      >
         + Add Task
       </button>
     );
@@ -29,7 +32,9 @@ export default function AddCardForm({ columnId, onAdd }) {
         className="input-area"
       />
       <div className="add-card-actions">
-        <button onClick={handleSubmit}>Add Card</button>
+        <button onClick={handleSubmit} className="">
+          Add Task
+        </button>
         <button
           onClick={() => {
             setOpen(false);

@@ -48,7 +48,11 @@ export default function Column({
         )}
       </Droppable>
 
-      <AddCardForm columnId={column.id} onAdd={onAddCard} />
+      <AddCardForm
+        columnId={column.id}
+        onAdd={onAddCard}
+        className={`add-${columnVariant}`}
+      />
     </div>
   );
 }

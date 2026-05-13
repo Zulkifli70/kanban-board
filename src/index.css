@@ -139,17 +139,34 @@
 }
 .add-card-actions {
   display: flex;
+  justify-content: center;
   gap: 1.5em;
   margin-top: 8px;
 }
 .add-card-actions button:first-child {
-  background: #0052cc;
+  background: #2c7cf3;
   color: white;
   border: none;
   border-radius: 6px;
   padding: 6px 14px;
   cursor: pointer;
   font-size: 13px;
+}
+
+.add-card-actions button:first-child:hover {
+  background-color: #105fd6;
+}
+
+.add-card-actions button:last-child {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.add-card-actions button:last-child:hover {
+  background-color: rgba(202, 202, 202, 0.342);
 }
 
 .input-area {
@@ -166,4 +183,16 @@
 
 .card-completed {
   border-top: 4px solid #22c55e;
+}
+
+.add-todo:hover {
+  background-color: #8fbaff;
+}
+
+.add-in-progress:hover {
+  background-color: #fde68a;
+}
+
+.add-completed:hover {
+  background-color: #86efac;
 }
