@@ -23,6 +23,15 @@
   width: 280px;
   min-height: 100px;
 }
+.column-todo {
+  background: #dbeafe;
+}
+.column-in-progress {
+  background: #fef3c7;
+}
+.column-completed {
+  background: #dcfce7;
+}
 .column-header {
   display: flex;
   justify-content: space-between;
@@ -39,12 +48,32 @@
   border-radius: 999px;
   padding: 2px 8px;
 }
+.column-todo .column-count {
+  background: #93c5fd;
+  color: #1e3a8a;
+}
+.column-in-progress .column-count {
+  background: #fcd34d;
+  color: #78350f;
+}
+.column-completed .column-count {
+  background: #86efac;
+  color: #14532d;
+}
 .column-body {
   min-height: 8px;
   transition: background 0.2s;
 }
-.dragging-over {
-  background: #c8d4e3;
+.column-todo .dragging-over {
+  background: #bfdbfe;
+  border-radius: 8px;
+}
+.column-in-progress .dragging-over {
+  background: #fde68a;
+  border-radius: 8px;
+}
+.column-completed .dragging-over {
+  background: #bbf7d0;
   border-radius: 8px;
 }
 

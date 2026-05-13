@@ -8,8 +8,16 @@ export default function Column({
   onDeleteCard,
   onEditCard,
 }) {
+  const columnVariantById = {
+    "col-1": "todo",
+    "col-2": "in-progress",
+    "col-3": "completed",
+  };
+
+  const columnVariant = columnVariantById[column.id] ?? "default";
+
   return (
-    <div className="column">
+    <div className={`column column-${columnVariant}`}>
       {/* Header kolom: judul + jumlah card */}
       <div className="column-header">
         <h2 className="column-title">{column.title}</h2>
