@@ -9,20 +9,51 @@ const initialColumns = [
   },
   {
     id: "col-2",
-    title: "To Do",
+    title: "In Progress",
     cards: [],
   },
   {
     id: "col-3",
-    title: "To Do",
+    title: "Completed",
     cards: [],
   },
 ];
 
+function mergeColumnsWithDefaults(savedColumns) {
+  if (!Array.isArray(savedColumns)) {
+    return initialColumns;
+  }
+
+  const savedColumnsById = new Map(
+    savedColumns.map((column) => [column.id, column]),
+  );
+
+  const mergedColumns = initialColumns.map((defaultColumn) => {
+    const savedColumn = savedColumnsById.get(defaultColumn.id);
+
+    return {
+      ...defaultColumn,
+      ...savedColumn,
+      // Title mengikuti config terbaru, cards tetap memakai data user.
+      title: defaultColumn.title,
+      cards: Array.isArray(savedColumn?.cards)
+        ? savedColumn.cards
+        : defaultColumn.cards,
+    };
+  });
+
+  const customColumns = savedColumns.filter(
+    (column) =>
+      !initialColumns.some((defaultColumn) => defaultColumn.id === column.id),
+  );
+
+  return [...mergedColumns, ...customColumns];
+}
+
 export function useBoard() {
   const [columns, setColumns] = useState(() => {
     const saved = loadFromStorage();
-    return saved ?? initialColumns;
+    return mergeColumnsWithDefaults(saved);
   });
 
   useEffect(() => {

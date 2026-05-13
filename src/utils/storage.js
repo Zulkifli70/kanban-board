@@ -6,5 +6,14 @@ export function saveToStorage(columns) {
 
 export function loadFromStorage() {
   const raw = localStorage.getItem(KEY);
-  return raw ? JSON.parse(raw) : null;
+
+  if (!raw) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
 }

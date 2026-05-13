@@ -1,6 +1,7 @@
 import { DragDropContext } from "@hello-pangea/dnd";
 import { useBoard } from "./hooks/useBoard";
 import Board from "./components/Board";
+import "./index.css";
 
 export default function App() {
   const { columns, addCard, deleteCard, editCard, onDragEnd } = useBoard();
