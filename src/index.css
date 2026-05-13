@@ -111,3 +111,126 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* Layout */
+.app {
+  padding: 24px;
+  min-height: 100vh;
+  background: #f4f5f7;
+}
+.app-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+.board {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* Column */
+.column {
+  background: #ebecf0;
+  border-radius: 10px;
+  padding: 12px;
+  width: 280px;
+  min-height: 100px;
+}
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.column-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+.column-count {
+  font-size: 12px;
+  background: #ddd;
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+.column-body {
+  min-height: 8px;
+  transition: background 0.2s;
+}
+.dragging-over {
+  background: #c8d4e3;
+  border-radius: 8px;
+}
+
+/* Card */
+.card {
+  background: white;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: grab;
+}
+.card.dragging {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  opacity: 0.9;
+}
+.card-delete {
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 4px;
+}
+.card-delete:hover {
+  color: #e53e3e;
+}
+.card input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+}
+
+/* Add card form */
+.add-card-btn {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 8px 4px;
+  color: #5e6c84;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 6px;
+}
+.add-card-btn:hover {
+  background: #ddd;
+}
+.add-card-form textarea {
+  width: 100%;
+  border-radius: 6px;
+  border: none;
+  padding: 8px;
+  font-size: 14px;
+  resize: none;
+  min-height: 60px;
+}
+.add-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.add-card-actions button:first-child {
+  background: #0052cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 13px;
+}
