@@ -18,8 +18,9 @@ function getDeadlineBadge(deadline) {
   const diffDays = Math.ceil((due - today) / (1000 * 60 * 60 * 24));
 
   if (diffDays < 0) return { label: "Overdue", style: "deadline-overdue" };
-  if (diffDays === 0) return { label: "Today", style: "deadline-today" };
-  if (diffDays <= 7) return { label: `${diffDays}d`, style: "deadline-soon" };
+  if (diffDays === 0) return { label: "Due Today", style: "deadline-today" };
+  if (diffDays <= 7)
+    return { label: `${diffDays} day`, style: "deadline-soon" };
 
   return { label: formatDeadlineDate(deadline), style: "deadline-far" };
 }
