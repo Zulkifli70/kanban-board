@@ -21,7 +21,7 @@
   background: #ebecf0;
   border-radius: 10px;
   padding: 12px;
-  width: 280px;
+  width: 400px;
   min-height: 100px;
 }
 .column-todo {
@@ -87,6 +87,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-center;
+  flex-direction: column;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   cursor: grab;
 }
@@ -195,4 +196,56 @@
 
 .add-completed:hover {
   background-color: #86efac;
+}
+
+/* Deadline */
+.card-deadline {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.deadline-input {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 3px 6px;
+  font-size: 11px;
+  color: #555;
+  cursor: pointer;
+}
+.deadline-input::-webkit-calendar-picker-indicator {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+/* Badge status */
+.deadline-badge {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 18px;
+}
+.deadline-ok {
+  background: #e6f4ea;
+  color: #2d7a4f;
+}
+.deadline-soon {
+  background: #fff3cd;
+  color: #856404;
+}
+.deadline-today {
+  background: #ffe5b4;
+  color: #b45309;
+}
+.deadline-overdue {
+  background: #fde8e8;
+  color: #c53030;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
 }

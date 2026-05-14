@@ -82,14 +82,14 @@ export function useBoard() {
     );
   };
 
-  const editCard = (columnId, cardId, newTitle) => {
+  const editCard = (columnId, cardId, changes) => {
     setColumns((prev) =>
       prev.map((col) =>
         col.id === columnId
           ? {
               ...col,
               cards: col.cards.map((card) =>
-                card.id === cardId ? { ...card, title: newTitle.trim() } : card,
+                card.id === cardId ? { ...card, ...changes } : card,
               ),
             }
           : col,
