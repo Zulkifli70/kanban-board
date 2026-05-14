@@ -89,11 +89,16 @@
   align-items: flex-center;
   flex-direction: column;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  cursor: grab;
 }
 .card.dragging {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   opacity: 0.9;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
 }
 .card-delete {
   background: none;
@@ -203,32 +208,41 @@
   margin-top: 10px;
   display: flex;
   align-items: center;
-  gap: 8px;
 }
 .deadline-input {
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 3px 6px;
-  font-size: 11px;
-  color: #555;
-  cursor: pointer;
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 .deadline-input::-webkit-calendar-picker-indicator {
-  opacity: 0.5;
-  cursor: pointer;
+  opacity: 0;
 }
 
 /* Badge status */
 .deadline-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
   padding: 4px 8px;
   border-radius: 18px;
+  min-height: 28px;
+  border: none;
 }
-.deadline-ok {
-  background: #e6f4ea;
-  color: #2d7a4f;
+.deadline-picker {
+  cursor: pointer;
+}
+.deadline-far {
+  background: #e0ecff;
+  color: #1d4ed8;
 }
 .deadline-soon {
   background: #fff3cd;
@@ -242,10 +256,18 @@
   background: #fde8e8;
   color: #c53030;
 }
+.deadline-empty {
+  background: #f3f4f6;
+  color: #6b7280;
+  border: 1px dashed #d1d5db;
+}
 
 .card-top {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
-  width: 100%;
+  flex: 1;
+  cursor: grab;
+}
+.card.dragging .card-top {
+  cursor: grabbing;
 }

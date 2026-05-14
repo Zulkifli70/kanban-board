@@ -1,18 +1,27 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Draggable } from "@hello-pangea/dnd";
 
-function getDeadlineStatus(deadline) {
+function formatDeadlineDate(deadline) {
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(new Date(deadline));
+}
+
+function getDeadlineBadge(deadline) {
   if (!deadline) return null;
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const due = new Date(deadline);
+  due.setHours(0, 0, 0, 0);
   const diffDays = Math.ceil((due - today) / (1000 * 60 * 60 * 24));
 
   if (diffDays < 0) return { label: "Overdue", style: "deadline-overdue" };
-  if (diffDays === 0) return { label: "Due today", style: "deadline-today" };
-  if (diffDays <= 2)
-    return { label: `${diffDays}d left`, style: "deadline-soon" };
-  return { label: `${diffDays}d left`, style: "deadline-ok" };
+  if (diffDays === 0) return { label: "Today", style: "deadline-today" };
+  if (diffDays <= 7) return { label: `${diffDays}d`, style: "deadline-soon" };
+
+  return { label: formatDeadlineDate(deadline), style: "deadline-far" };
 }
 
 export default function Card({
@@ -25,6 +34,7 @@ export default function Card({
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [draft, setDraft] = useState(card.title);
+  const deadlineInputRef = useRef(null);
 
   const handleSaveTitle = () => {
     if (draft.trim()) onEdit(columnId, card.id, { title: draft.trim() });
@@ -35,7 +45,19 @@ export default function Card({
     onEdit(columnId, card.id, { deadline: e.target.value || null });
   };
 
-  const deadlineStatus = getDeadlineStatus(card.deadline);
+  const handleOpenDeadlinePicker = () => {
+    const input = deadlineInputRef.current;
+    if (!input) return;
+
+    if (typeof input.showPicker === "function") {
+      input.showPicker();
+      return;
+    }
+
+    input.click();
+  };
+
+  const deadlineBadge = getDeadlineBadge(card.deadline);
 
   return (
     <Draggable draggableId={card.id} index={index}>
@@ -44,10 +66,9 @@ export default function Card({
           className={`card ${snapshot.isDragging ? "dragging" : ""} ${className}`.trim()}
           ref={provided.innerRef}
           {...provided.draggableProps}
-          {...provided.dragHandleProps}
         >
-          <div className="flex">
-            <div className="card-top">
+          <div className="card-header">
+            <div className="card-top" {...provided.dragHandleProps}>
               {isEditing ? (
                 <input
                   value={draft}
@@ -63,7 +84,6 @@ export default function Card({
               )}
             </div>
             <div className="flex align-middle">
-              {" "}
               <button
                 className="card-delete"
                 onClick={() => onDelete(columnId, card.id)}
@@ -86,17 +106,23 @@ export default function Card({
             </div>
           </div>
           <div className="card-deadline">
+            <button
+              type="button"
+              className={`deadline-badge deadline-picker ${deadlineBadge?.style ?? "deadline-empty"}`}
+              onPointerDown={(e) => e.stopPropagation()}
+              onClick={handleOpenDeadlinePicker}
+            >
+              <span>{deadlineBadge?.label ?? "Set deadline"}</span>
+            </button>
             <input
+              ref={deadlineInputRef}
               type="date"
               value={card.deadline ?? ""}
               onChange={handleDeadlineChange}
               className="deadline-input"
+              tabIndex={-1}
+              aria-label={`Set deadline for ${card.title}`}
             />
-            {deadlineStatus && (
-              <span className={`deadline-badge ${deadlineStatus.style}`}>
-                {deadlineStatus.label}
-              </span>
-            )}
           </div>
         </div>
       )}
