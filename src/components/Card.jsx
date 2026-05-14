@@ -28,6 +28,7 @@ export default function Card({
   card,
   index,
   columnId,
+  isCompletedColumn = false,
   onDelete,
   onEdit,
   className = "",
@@ -105,25 +106,27 @@ export default function Card({
               </button>
             </div>
           </div>
-          <div className="card-deadline">
-            <button
-              type="button"
-              className={`deadline-badge deadline-picker ${deadlineBadge?.style ?? "deadline-empty"}`}
-              onPointerDown={(e) => e.stopPropagation()}
-              onClick={handleOpenDeadlinePicker}
-            >
-              <span>{deadlineBadge?.label ?? "Set deadline"}</span>
-            </button>
-            <input
-              ref={deadlineInputRef}
-              type="date"
-              value={card.deadline ?? ""}
-              onChange={handleDeadlineChange}
-              className="deadline-input"
-              tabIndex={-1}
-              aria-label={`Set deadline for ${card.title}`}
-            />
-          </div>
+          {!isCompletedColumn && (
+            <div className="card-deadline">
+              <button
+                type="button"
+                className={`deadline-badge deadline-picker ${deadlineBadge?.style ?? "deadline-empty"}`}
+                onPointerDown={(e) => e.stopPropagation()}
+                onClick={handleOpenDeadlinePicker}
+              >
+                <span>{deadlineBadge?.label ?? "Set deadline"}</span>
+              </button>
+              <input
+                ref={deadlineInputRef}
+                type="date"
+                value={card.deadline ?? ""}
+                onChange={handleDeadlineChange}
+                className="deadline-input"
+                tabIndex={-1}
+                aria-label={`Set deadline for ${card.title}`}
+              />
+            </div>
+          )}
         </div>
       )}
     </Draggable>

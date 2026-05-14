@@ -38,6 +38,7 @@ export default function Column({
                 card={card}
                 index={index}
                 columnId={column.id}
+                isCompletedColumn={column.id === "col-3"}
                 onDelete={onDeleteCard}
                 onEdit={onEditCard}
                 className={`card-${columnVariant}`}
