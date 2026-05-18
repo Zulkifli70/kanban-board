@@ -5,7 +5,7 @@ const initialColumns = [
   {
     id: "col-1",
     title: "To Do",
-    cards: [{ id: "cards-1", title: "Contoh Task" }],
+    cards: [{ id: "cards-1", title: "Contoh Tampilan Task" }],
   },
   {
     id: "col-2",
