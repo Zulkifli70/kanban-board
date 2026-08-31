@@ -1,16 +1,78 @@
-# React + Vite
+# Kanban Board
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern drag-and-drop Kanban board application built with React, Vite, and TailwindCSS.
 
-Currently, two official plugins are available:
+## Project Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Kanban Board is a task management application that allows users to organize tasks across columns (To Do, In Progress, Completed). Features include:
 
-## React Compiler
+- **Drag & drop** task movement between columns using `@hello-pangea/dnd`
+- **Add, edit, and delete** cards within columns
+- **Deadline tracking** with visual badges (Overdue, Due Today, Soon, Far)
+- **Local storage persistence** - your data persists across browser sessions
+- **Responsive design** built with TailwindCSS
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## How to Run in Local
 
-## Expanding the ESLint configuration
+```bash
+# Install dependencies
+npm install
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Start development server
+npm run dev
+
+# Open browser at http://localhost://3000
+```
+
+Available scripts:
+- `npm run dev` - Starts Vite dev server with HMR
+- `npm run build` - Builds for production
+- `npm run lint` - Runs ESLint
+- `npm run preview` - Preview production build locally
+
+## Demo
+
+Live demo available at: **https://kanb-board.vercel.app**
+
+*(Or check the deployment section below for custom deployment)*
+
+## Additional Content
+
+### Technology Stack
+
+- **React 19** - UI library
+- **Vite** - Build tool and dev server
+- **TailwindCSS 4** - Styling
+- **@hello-pangea/dnd** - Drag and drop functionality
+- **React Hooks** - State management
+
+### Data Persistence
+
+All board data is automatically saved to local storage. Your columns and cards persist even after closing the browser.
+
+### Column Structure
+
+Default columns are:
+- **To Do** (`col-1`) - New tasks start here
+- **In Progress** (`col-2`) - Currently being worked on
+- **Completed** (`col-3`) - Finished tasks
+
+### Drag & Drop
+
+- Tasks can be dragged between columns
+- Visual feedback shows dragging state
+- Drop target highlights when dragging over
+
+### Card Features
+
+- **Double-click** to edit card title
+- **Deadline picker** with color-coded badges
+  - Red: Overdue
+  - Orange: Due Today
+  - Yellow: Soon (within 7 days)
+  - Gray: No deadline set
+- Delete button to remove cards
+
+### Customization
+
+To add new columns, modify `src/hooks/useBoard.js` and add corresponding Tailwind classes in `src/components/Column.jsx`.
